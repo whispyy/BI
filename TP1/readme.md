@@ -33,17 +33,20 @@ La visée des deux fonctions est inverse. C'est-à-dire qu'un "group by" sert à
 
 ### f
 
+select deptno, job, sum(sal) from EMP
+group by grouping sets ((deptno),(deptno, job),());
 
-marche pas
+### g
 
-> select DEPTNO, JOB, sum(SAL) from EMP where sum(SAL) in
-( 
-(select unique sum(SAL) over (partition by DEPTNO, JOB) from EMP)
-union
-(select unique sum(SAL) over (partition by DEPTNO) from EMP)
-union
-(select sum(SAL) from EMP)
-);
+```SQL
+select decode(deptno, null, 'TousDep', deptno, deptno), decode (job, null, 'TousEmployes', job, job), sum(sal) from EMP
+group by grouping sets ((deptno),(deptno, job),());
+```
 
+ou
 
-(select unique DEPTNO, JOB, sum(SAL) over (partition by DEPTNO, JOB) from EMP order by DEPTNO, JOB) union (select unique DEPTNO, sum(SAL) over (partition by DEPTNO) from EMP);
+```SQL
+select decode(deptno, null, 'TousDep', deptno, deptno), nvl(job,'TousEmployes'), sum(sal) from EMP
+group by grouping sets ((deptno),(deptno, job),());
+```
+
