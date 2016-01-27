@@ -11,7 +11,12 @@ Importation :
 ## Exercice 1
 ### a
 
-> select DEPTNO, ENAME, SAL, RANK() OVER (partition by DEPTNO order by DEPTNO, SAL DESC) as RANG from EMP where DEPTNO = 10 or DEPTNO = 30;
+```SQL
+select DEPTNO, ENAME, SAL, RANK() 
+	OVER (partition by DEPTNO order by DEPTNO, SAL DESC) as RANG 
+	from EMP 
+		where DEPTNO = 10 or DEPTNO = 30;
+```
 
 ### b
 
@@ -33,8 +38,11 @@ La visée des deux fonctions est inverse. C'est-à-dire qu'un "group by" sert à
 
 ### f
 
+```SQL
 select deptno, job, sum(sal) from EMP
-group by grouping sets ((deptno),(deptno, job),());
+	group by 
+		grouping sets ((deptno),(deptno, job),());
+```
 
 ### g
 
