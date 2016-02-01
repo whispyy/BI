@@ -41,3 +41,39 @@
 9. Est-ce que les remises font augmenter le chiffre d'affaire et le nombre de vente par produit.
 
 ## Modélisation dimensionnelle
+
+Table de fait : Une ligne de vente (appelé VENTE).
+ - attributs : quantité, remise, prix_total_TTC
+
+Les dimensions :
+ - Produit
+  - attributs : id, prix unitaire, designation, marque, catégorie
+ - Client
+  - attributs : id, age, sexe, nom, adresse
+ - Date
+  - attributs : id, jours, mois, trimestre, semestre, année
+ - Localité (correspond à la localité du Client)
+  - attributs : id, ville, pays
+
+Hierarchie : 
+
+Une hierarchie possible serait de créer une hierarchie pour la catégorie d'un produit (famille de produit, sous-famille de produit, .. etc)
+
+On pourrait également créer une hierarchie pour le groupe d'age du client regroupant par tranche d'age les clients.
+
+On pourrait aussi créer une hierarchie achat pour la dimension localité dans l'objectif de récupérer un achat par ville ou par Pays.
+
+## Implémentation et alimentation
+
+1. On va rafraichir les produits en fast on commit, c'est à dire qu'a chaque ajout ou évolution d'un produit on va incrémenter la vue concernant le produit à l'aide d'un log.
+_justification_ : On considère l'ajout ou modification d'un produit moins fréquent que le reste des données. En conséquence on se permet de les transférer de suite dans la base décisionnel.
+
+Les autres dimensions et la table de fait sont définit en complete on demand. C'est-à-dire que les vues seront rafraichient complètement une fois par nuit. 
+_justification_ : Les tables étant conséquentes et rafraichient de manière fixe. Le système incrémental serait lourd en cout de stockage pour le fichier log.
+
+```SQL
+create materialized view <nom de la vue>
+Build immediate
+Refresh fast on demand
+Enable query rewrite as
+Select ...
