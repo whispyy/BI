@@ -4,7 +4,7 @@
 
 ### Question 1
 
-	__d(iris1,iris2)__ = sqrt( ((sl(iris2)-sl(iris1))/(Max - Min))^2 + ((sw(iris2)-sw(iris1))/(Max - Min))^2 + ((pl(iris2)-pl(iris1))/(Max - Min))^2 + ((pw(iris2)-pw(iris1))/(Max - Min))^2 )
+__d(iris1,iris2)__ = sqrt( ((sl(iris2)-sl(iris1))/(Max - Min))^2 + ((sw(iris2)-sw(iris1))/(Max - Min))^2 + ((pl(iris2)-pl(iris1))/(Max - Min))^2 + ((pw(iris2)-pw(iris1))/(Max - Min))^2 )
 
 
 sl = sepal length
@@ -52,11 +52,11 @@ Les groupes n'ont pas changés l'algorithme s'arrête.
 
 #### Normalisation
 
-	__dist(P1,P2)__ = sqrt( (nbEspece(P2-P1)/(nbEspece(Max-Min)) )^2 + (nbBase(P2-P1)/nbBase(Max-Min) )^2 + (Diamètre(P2-P1)/(Diamètre(Max-Min)))^2 + (0 si vegatation(P1=P2); 1 sinon) )
+__dist(P1,P2)__ = sqrt( (nbEspece(P2-P1)/(nbEspece(Max-Min)) )^2 + (nbBase(P2-P1)/nbBase(Max-Min) )^2 + (Diamètre(P2-P1)/(Diamètre(Max-Min)))^2 + (0 si vegatation(P1=P2); 1 sinon) )
 
 #### Calcul
 
-	__dist(P1,P2)__ = RACINE(((B3-B2)/11)^2+(C3-C2)/4^2+((D3-D2)/(120536-2300))^2+1)
+__dist(P1,P2)__ = RACINE(((B3-B2)/11)^2+(C3-C2)/4^2+((D3-D2)/(120536-2300))^2+1)
 
 ### Question 2
 
