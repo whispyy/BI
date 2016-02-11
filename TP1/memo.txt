@@ -8,7 +8,10 @@ VENTES (TID Numeric(4),PID Numeric(2),CID Numeric(2),QTE Numeric(3), PU Numeric(
 
 
 
+
+
 TEMPS [tid, annee, trimestre, mois, jour]
 CLIENTS [cl_id, cl_name, cl_city, cl_r, cl_state]
 PRODUITS [pid, pname, category, subcat]
+
 VENTES [tid, pid, cid, qte, pu]

@@ -42,20 +42,22 @@
 
 ## Modélisation dimensionnelle
 
-Table de fait : Une ligne de vente (appelé VENTE).
- - attributs : quantité, remise, prix_total_TTC
+__Table de fait :__ Une ligne de vente (appelé VENTE).
 
-Les dimensions :
+ - attributs : quantité, remise, prix
+
+__Les dimensions :__
+
  - Produit
-  - attributs : id, prix unitaire, designation, marque, catégorie
+  - attributs : idp, designation, catégorie, sousCategorie.
  - Client
-  - attributs : id, age, sexe, nom, adresse
+  - attributs : idc, age, tranche_age, sexe, nom, prenom, adresse
  - Date
-  - attributs : id, jours, mois, trimestre, semestre, année
+  - attributs : idd, jours, mois, trimestre, semestre, année
  - Localité (correspond à la localité du Client)
-  - attributs : id, ville, pays
+  - attributs : idl, ville, pays
 
-Hierarchie : 
+__Hierarchie :__ 
 
 Une hierarchie possible serait de créer une hierarchie pour la catégorie d'un produit (famille de produit, sous-famille de produit, .. etc)
 
@@ -68,12 +70,20 @@ On pourrait aussi créer une hierarchie achat pour la dimension localité dans l
 1. On va rafraichir les produits en fast on commit, c'est à dire qu'a chaque ajout ou évolution d'un produit on va incrémenter la vue concernant le produit à l'aide d'un log.
 _justification_ : On considère l'ajout ou modification d'un produit moins fréquent que le reste des données. En conséquence on se permet de les transférer de suite dans la base décisionnel.
 
-Les autres dimensions et la table de fait sont définit en complete on demand. C'est-à-dire que les vues seront rafraichient complètement une fois par nuit. 
+Les autres dimensions et la table de fait sont définit en force on demand. C'est-à-dire que les vues seront rafraichient complètement une fois par nuit. 
+
 _justification_ : Les tables étant conséquentes et rafraichient de manière fixe. Le système incrémental serait lourd en cout de stockage pour le fichier log.
 
-```SQL
-create materialized view <nom de la vue>
-Build immediate
-Refresh fast on demand
-Enable query rewrite as
-Select ...
+2. Les clés primaires sont : 
+	- idp : code du produit
+	- idc : code du client
+	- idl : contactenation code postale + ville
+	- idd : code de prix_date
+
+Les clés étrangères sont : 
+	- idp entre venteView et produitView
+  - idc entre venteView et clientView
+  - idl entre venteView et localiteView
+  - idd entre venteView et dateView
+
+5.
