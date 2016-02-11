@@ -1,0 +1,14 @@
+TEMPS (TID Numeric(4), annee Numeric(4), trimestre Numeric(2),mois Numeric(2), jour Numeric(2));
+
+CLIENTS (CL_ID Numeric(2),CL_NAME varchar(50), CL_CITY varchar(30), CL_R varchar(30), CL_STATE varchar(30));
+
+PRODUITS (PID Numeric(2), PNAME varchar(50), CATEGORY varchar(40),SUBCAT varchar(30));
+
+VENTES (TID Numeric(4),PID Numeric(2),CID Numeric(2),QTE Numeric(3), PU Numeric(6,2));
+
+
+
+TEMPS [tid, annee, trimestre, mois, jour]
+CLIENTS [cl_id, cl_name, cl_city, cl_r, cl_state]
+PRODUITS [pid, pname, category, subcat]
+VENTES [tid, pid, cid, qte, pu]

@@ -61,3 +61,5 @@ __dist(P1,P2)__ = RACINE(((B3-B2)/11)^2+(C3-C2)/4^2+((D3-D2)/(120536-2300))^2+1)
 ### Question 2
 
 *Voir feuille de TD*
+
+/!\ Ne pas oublier les axes sur les single link et complete link

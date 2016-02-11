@@ -58,3 +58,6 @@ select decode(deptno, null, 'TousDep', deptno, deptno), nvl(job,'TousEmployes'),
 group by grouping sets ((deptno),(deptno, job),());
 ```
 
+## Exercice 2
+
+
