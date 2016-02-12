@@ -9,14 +9,14 @@ Amara Antoine
 
 
 -- requête 1
-SELECT designation, SUM(qte*prix) as CA
+SELECT designation, SUM(quantite*prix) as CA
 	FROM venteView v, produitView p
 	WHERE v.idp = p.idp
 	GROUP BY designation
 	ORDER BY designation;
 
 -- requête 2
-SELECT categorie, mois, SUM(qte*prix) as CA
+SELECT categorie, mois, SUM(quantite*prix) as CA
 	FROM venteView v, produitView p, dateView d
 	WHERE v.idp = p.idp
 	AND v.idd = d.idd
@@ -26,9 +26,10 @@ SELECT categorie, mois, SUM(qte*prix) as CA
 
 
 -- requête 4
-SELECT designation, SUM(QTE) as ca,
-	RANK() OVER(PARTITION BY designation ORDER BY SUM(QTE)) as rang
+SELECT designation, SUM(quantite) as ca,
+	RANK() OVER(PARTITION BY designation ORDER BY SUM(quantite)) as rang
 	FROM venteView v, produitView p
-	WHERE  v.idp = p.idp
+	WHERE  v.idp = p.idp and
+	rownum between 0 and 3
 	GROUP BY designation
 	ORDER BY ca DESC;

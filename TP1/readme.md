@@ -1,12 +1,12 @@
 # TP1 - BI
 
-**Durand Jean-Frédéric**
+**Durand Jean-Frédéric & Amara Antoine**
 
 ## Commandes
 
 Importation :
 
-> @/chemin/vers/fichier/sql
+> @/chemin/vers/fichier.sql
 
 ## Exercice 1
 ### a
