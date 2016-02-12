@@ -1,6 +1,8 @@
-# TP2 - BI
+<h1 style="text-align: center;"> TP2 - BI</h1>
 
-**Amara Antoine & Durand Jean-Frédéric**
+<h2 style="text-align: right;">Amara Antoine & Durand Jean-Frédéric</h2>
+
+---
 
 ## Etats des besoins
 
@@ -22,7 +24,7 @@
 **Questions abandonnées**
 
 - Est ce qu'il existe une relation entre les chiffres d'affaires, les mois de l'année et les sexese des acheteurs.
-  - Questions abandonnée car similaire a la question 3.
+  - Questions abandonnée car similaire à la question 3.
 - Combien se classerait dans le top des ventes toutes catégories confondues un produit vendu à 50 exemplaires.
   - Question complétement incohérente.
 - Est ce que les produits peuvent être remisés ?
@@ -40,11 +42,16 @@
 8. Quel est l'évolution du chiffre d'affaire par produit selon une période donnée ?
 9. Est-ce que les remises font augmenter le chiffre d'affaire et le nombre de vente par produit.
 
+---
+
 ## Modélisation dimensionnelle
 
-__Table de fait :__ Une ligne de vente (appelé VENTE).
+**Voir Schema.jpg**
 
- - attributs : quantité, remise, prix
+__Table de fait :__ 
+
+ - Une ligne de vente (appelé VENTE).
+  - attributs : quantité, remise, prix
 
 __Les dimensions :__
 
@@ -65,25 +72,50 @@ On pourrait également créer une hierarchie pour le groupe d'age du client regr
 
 On pourrait aussi créer une hierarchie achat pour la dimension localité dans l'objectif de récupérer un achat par ville ou par Pays.
 
+---
+
 ## Implémentation et alimentation
 
-1. On va rafraichir les produits en fast on commit, c'est à dire qu'a chaque ajout ou évolution d'un produit on va incrémenter la vue concernant le produit à l'aide d'un log.
+### Question 1
+
+On va rafraichir les produits en fast on commit, c'est à dire qu'a chaque ajout ou évolution d'un produit on va incrémenter la vue concernant le produit à l'aide d'un log.
 _justification_ : On considère l'ajout ou modification d'un produit moins fréquent que le reste des données. En conséquence on se permet de les transférer de suite dans la base décisionnel.
 
 Les autres dimensions et la table de fait sont définit en force on demand. C'est-à-dire que les vues seront rafraichient complètement une fois par nuit. 
 
 _justification_ : Les tables étant conséquentes et rafraichient de manière fixe. Le système incrémental serait lourd en cout de stockage pour le fichier log.
 
-2. Les clés primaires sont : 
-	- idp : code du produit
-	- idc : code du client
-	- idl : contactenation code postale + ville
-	- idd : code de prix_date
+### Question 2
+
+ Les clés primaires sont : 
+
+>idp : code du produit
+
+>idc : code du client
+
+>idl : contactenation code postale + ville
+
+>idd : code de prix_date
 
 Les clés étrangères sont : 
-	- idp entre venteView et produitView
-  - idc entre venteView et clientView
-  - idl entre venteView et localiteView
-  - idd entre venteView et dateView
 
-5.
+>idp entre venteView et produitView
+
+>idc entre venteView et clientView
+
+>idl entre venteView et localiteView
+
+>idd entre venteView et dateView
+
+### Question 5
+
+Nous avons crée les dimensions suivantes :
+
+  - produitDimension pour hierarchiser :
+    - designation, catégorie et sous catégorie
+  - clientDimension pour hierarchiser :
+    - age et tranche_age
+  - dateDimension pour hierarchiser :
+    - jour, mois, trimestre, semestre et année
+  - localiteDimension pour hierarchiser :
+    - ville et pays
