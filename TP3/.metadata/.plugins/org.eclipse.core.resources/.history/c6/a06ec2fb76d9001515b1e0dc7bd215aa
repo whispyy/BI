@@ -1,0 +1,10 @@
+package clustering;
+
+public class DistanceEuclidienne implements Distance {
+
+	public double valeur(Donnee d1, Donnee d2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
