@@ -1,4 +1,5 @@
 package clustering ;
+import java.util.Iterator;
 import java.util.Random ;
 
 /**
@@ -82,20 +83,43 @@ public class Clustering{
   
     // on choisit (pseudo-)aléatoirement k centres pour commencer l'algo.
     private void choisirCentres(){
-        // A COMPLETER
+        // OK - a tester
+    	Donnee min = this.lesDonnees.min();
+    	Donnee max = this.lesDonnees.max();
+    	int nbDimensions = this.lesDonnees.nbDimensions();
+    	
+    	for (int i=0; i<k; i++){
+    		double[] val = new double[nbDimensions];
+    		for (int j=0; j< nbDimensions; j++)
+    			val[j] = min.valeurDim(j) + (max.valeurDim(j) - min.valeurDim(j) * this.hasard.nextDouble());
+    	}
+    	
     }
   
     // on change les centres en prenant les barycentres des clusters.
     // à faire après chaque étape
     private void nouveauxCentres(){
-        // A COMPLETER
+        // OK
+    	for (int i=0; i <k;i++)
+    		lesCentres[i] = lesClusters[i].moyenne();
     }
   
     // une étape : on calcule la distance de chaque donnée par rapport aux centres des clusters
     // et on place chaque donnée dans le cluster dont le centre est le plus proche
     private boolean etape(){
         boolean change = false ;
-        // A COMPLETER
+        // OK
+        Iterator<Donnee> it = lesDonnees.iterator();
+        
+        while(it.hasNext()){
+        	
+        	for (int i=0;i<lesCentres.length;i++){
+        		Donnee d = it.next();
+        		change |= d.aChangeDeCluster();
+        	}
+        }
+        if (change)
+        	this.nouveauxCentres();
         return change ; // renvoie true ssi au moins une donnee a change de cluster
     }
 
@@ -106,7 +130,14 @@ public class Clustering{
      */
     public double wc() {
         double som = 0.0 ;
-        // A COMPLETER
+        // OK
+        for (int i=0;i < k; i++){
+        	int size = lesClusters[i].size();
+        	double count = 0.0;
+        	for (int j=0; j < size; j++)
+        		count += this.distance.valeur(lesCentres[i], lesClusters[i].get(j));
+        	som += count;
+        }
         return som ;
     }
 
@@ -116,7 +147,11 @@ public class Clustering{
      */
     public double bc(){
         double som = 0.0 ;
-        // A COMPLETER
+        // OK
+        for (int i=0; i<k; i++){
+        	for (int j=0; j<k; j++)
+        		som += this.distance.valeur(lesCentres[i], lesCentres[j]);
+        }
         return som ;
     }
   
