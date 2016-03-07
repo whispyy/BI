@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;swingstates_0.3_14_02_18.zip&apos; to &apos;TPGuidesAlignement&apos;&#x0A;- Original project: &apos;TPBoutons&apos;&#x0A;- Destination element: &apos;TPGuidesAlignement&apos;&#x0A;- Original element: &apos;swingstates_0.3_14_02_18.zip&apos;&#x0A;- Update references to refactored element" description="Move file" destination="=TPGuidesAlignement" element1="swingstates_0.3_14_02_18.zip" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1456219777045" units="0" version="1.0"/>
+</session>

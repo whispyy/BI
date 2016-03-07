@@ -1,0 +1,7 @@
+package e214.skeleton;
+
+import fr.lri.swingstates.canvas.CExtensionalTag;
+
+public class MagneticGuide extends CExtensionalTag {
+	
+}

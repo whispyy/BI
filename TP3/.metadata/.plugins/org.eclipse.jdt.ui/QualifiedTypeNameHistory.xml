@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="fr.lri.swingstates.canvas.CExtensionalTag"/>
+<fullyQualifiedTypeName name="fr.lri.swingstates.canvas.CSegment"/>
+<fullyQualifiedTypeName name="fr.lri.swingstates.canvas.Canvas"/>
+<fullyQualifiedTypeName name="fr.lri.swingstates.canvas.transitions.PressOnShape"/>
+<fullyQualifiedTypeName name="fr.lri.swingstates.sm.transitions.MouseOnPosition"/>
+<fullyQualifiedTypeName name="fr.lri.swingstates.sm.transitions.Click"/>
+</qualifiedTypeNameHistroy>

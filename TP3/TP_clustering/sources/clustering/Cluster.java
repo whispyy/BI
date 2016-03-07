@@ -57,9 +57,20 @@ public class Cluster implements java.lang.Iterable<Donnee>{
         if (this.dimDonnee != d.nbDimensions()) throw new ClusterException("les donnees doivent avoir toutes la même dimension");
         this.data.add(d) ;
         this.nb++ ;
-        // A COMPLETER : l'actualisation des tableaux min, max, somme et moy
+        // OK
+        for (int i=0; i < this.dimDonnee; i++){
+        	double val = d.valeurDim(i);
+        	if (this.premiereDonnee){
+        		this.min[i] = val;
+        		this.max[i] = val;
+        	}
+        	this.calculMinMax(i);
+        	this.somme[i] += val;
+        	this.moy[i] = this.somme[i]/this.nb;
+        }
         this.ok = false ; // il faudra (re)calculer les ecarts types
-        this.premiereDonnee = false ;
+        if (this.premiereDonnee)
+        	this.premiereDonnee = false;
     }
 
     /**
@@ -134,7 +145,7 @@ public class Cluster implements java.lang.Iterable<Donnee>{
      */
     public Donnee ecartType(){
         if (! ok){// on recalcule this.sd
-        	// A COMPLETER - normalement c'est bon
+        	// OK - a vérifier
         	double[] theta = new double[this.dimDonnee];
         	
         	for(int i = 0; i < this.dimDonnee; i++){
@@ -154,10 +165,14 @@ public class Cluster implements java.lang.Iterable<Donnee>{
     /**
      * La compacité WC = somme pour toutes les données d de la distance de d au barycentre du cluster.
      * @return la compacité WC du cluster
+     * @throws ClusterException 
      */
-    public double wc(){
+    public double wc() throws ClusterException{
         double som = 0.0 ;
-        // A COMPLETER
+        // OK
+        for (Donnee d : this.data){
+        	som += d.distanceCentre();
+        }
         return som ;
     }
 
