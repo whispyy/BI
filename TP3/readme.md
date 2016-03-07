@@ -2,6 +2,8 @@
 
 **Durand JF & Amara Antoine**
 
+/!\ : Les données ont été mises dans le dossier TP_clustering/donnees
+
 ## Segmentation de "Square1"
 
 ### Question 1

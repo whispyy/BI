@@ -66,7 +66,7 @@ public class MainSquare{
             int k = Integer.parseInt(argv[1]) ;
             System.out.println("nombre de données lues : "+lesDonnees.size());
             // essayer avec d'autres distances
-            Distance dist = new DistanceEuclidienne() ;
+            Distance dist = new DistanceEuclidienne();
             Clustering cl = new Clustering(k, lesDonnees, dist);
             Cluster[] lesClusters = cl.algo(false) ;
             for (int i=0 ; i<k ; i++){

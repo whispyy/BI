@@ -83,17 +83,10 @@ public class Clustering{
   
     // on choisit (pseudo-)aléatoirement k centres pour commencer l'algo.
     private void choisirCentres(){
-        // OK - a tester
-    	Donnee min = this.lesDonnees.min();
-    	Donnee max = this.lesDonnees.max();
-    	int nbDimensions = this.lesDonnees.nbDimensions();
-    	
-    	for (int i=0; i<k; i++){
-    		double[] val = new double[nbDimensions];
-    		for (int j=0; j< nbDimensions; j++)
-    			val[j] = min.valeurDim(j) + (max.valeurDim(j) - min.valeurDim(j) * this.hasard.nextDouble());
-    	}
-    	
+        // OK
+        for (int i=0; i<k; i++){
+            this.lesCentres[i] = this.lesDonnees.get(this.hasard.nextInt(this.lesDonnees.size()));
+        }
     }
   
     // on change les centres en prenant les barycentres des clusters.
@@ -134,8 +127,10 @@ public class Clustering{
         for (int i=0;i < k; i++){
         	int size = lesClusters[i].size();
         	double count = 0.0;
-        	for (int j=0; j < size; j++)
-        		count += this.distance.valeur(lesCentres[i], lesClusters[i].get(j));
+        	for (int j=0; j < size; j++) {
+
+                count += this.distance.valeur(lesCentres[i], lesClusters[i].get(j));
+            }
         	som += count;
         }
         return som ;
@@ -149,8 +144,9 @@ public class Clustering{
         double som = 0.0 ;
         // OK
         for (int i=0; i<k; i++){
-        	for (int j=0; j<k; j++)
-        		som += this.distance.valeur(lesCentres[i], lesCentres[j]);
+        	for (int j=0; j<k; j++) {
+                som += this.distance.valeur(lesCentres[i], lesCentres[j]);
+            }
         }
         return som ;
     }
