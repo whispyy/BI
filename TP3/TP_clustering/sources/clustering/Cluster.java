@@ -146,18 +146,18 @@ public class Cluster implements java.lang.Iterable<Donnee>{
     public Donnee ecartType(){
         if (! ok){// on recalcule this.sd
         	// OK - a vérifier
-        	double[] theta = new double[this.dimDonnee];
+        	double[] theta = new double[dimDonnee];
         	
-        	for(int i = 0; i < this.dimDonnee; i++){
-        		for(int j = 0; j < this.data.size(); i++){
-        			theta[i] += Math.pow((this.data.get(j).valeurDim(i)-this.moy[i]), 2);
+        	for(int i = 0; i < dimDonnee; i++){
+        		for(int j = 0; j < data.size(); i++){
+        			theta[i] += Math.pow((data.get(j).valeurDim(i)-moy[i]), 2);
         		}
         		theta[i] = Math.sqrt(theta[i]);
         	}
-        	this.sd = theta;
+        	sd = theta;
         }
         else{
-            this.ok = true;
+            ok = true;
         }
         return new Donnee(sd);
     }
@@ -170,10 +170,10 @@ public class Cluster implements java.lang.Iterable<Donnee>{
     public double wc() throws ClusterException{
         double som = 0.0 ;
         // OK
-        for (Donnee d : this.data){
+        for (Donnee d : data){
         	som += d.distanceCentre();
         }
-        return som ;
+		return som;
     }
 
     /**

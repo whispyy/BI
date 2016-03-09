@@ -93,26 +93,24 @@ public class Clustering{
     // à faire après chaque étape
     private void nouveauxCentres(){
         // OK
-    	for (int i=0; i <k;i++)
-    		lesCentres[i] = lesClusters[i].moyenne();
+    	for (int i=0; i <k;i++){
+    		for (int j=0; j <this.lesClusters[i].size(); j++)
+    			lesCentres[i] = lesClusters[i].moyenne();
+    	}
+    		
     }
   
     // une étape : on calcule la distance de chaque donnée par rapport aux centres des clusters
     // et on place chaque donnée dans le cluster dont le centre est le plus proche
     private boolean etape(){
         boolean change = false ;
-        // OK
-        Iterator<Donnee> it = lesDonnees.iterator();
-        
-        while(it.hasNext()){
-        	
-        	for (int i=0;i<lesCentres.length;i++){
-        		Donnee d = it.next();
-        		change |= d.aChangeDeCluster();
-        	}
+        // OK        
+        for (int i = 0; i < lesDonnees.size(); i++){
+        	Donnee d = lesDonnees.get(i);
+        	for (int j = 0; j < k; j++)
+        		d.evalueChangementCluster(lesCentres[j], j, lesClusters, distance);
+        	change |= d.aChangeDeCluster();
         }
-        if (change)
-        	this.nouveauxCentres();
         return change ; // renvoie true ssi au moins une donnee a change de cluster
     }
 
@@ -120,19 +118,13 @@ public class Clustering{
      * renvoie la compacité des clusters, c'est à dire la somme des compacités de tous les clusters (WC vient de "within clusters").
      * La compacité d'un cluster est la somme des distances des données du cluster par rapport à son centre.
      * @return la compacité des k clusters
+     * @throws ClusterException 
      */
-    public double wc() {
+    public double wc() throws ClusterException {
         double som = 0.0 ;
         // OK
-        for (int i=0;i < k; i++){
-        	int size = lesClusters[i].size();
-        	double count = 0.0;
-        	for (int j=0; j < size; j++) {
-
-                count += this.distance.valeur(lesCentres[i], lesClusters[i].get(j));
-            }
-        	som += count;
-        }
+        for (int i = 0; i < lesClusters.length; i++)
+        	som += lesClusters[i].wc();
         return som ;
     }
 
@@ -156,24 +148,28 @@ public class Clustering{
      * On applique l'algo des k-means
      * @param trace boolean qui permet de demander (ou pas) d'avoir une trace des étapes de l'algorithme. A eviter s'il y a beaucoup de données !
      * @return le tableau des k Clusters résultat de l'application de l'algorithme.
+     * @throws ClusterException 
      */
-    public Cluster[] algo(boolean trace){
+    public Cluster[] algo(boolean trace) throws ClusterException{
         boolean change = true ;
         if (trace) {
             System.out.println("données avant le clustering : "); 
             this.affichage() ;
             System.out.println("Application du clustering : "); 
         }
+        //OK
+        this.choisirCentres();
+        change = this.etape();
         while (change) {
-            // l'instruction ci-dessous est A REMPLACER par l'algo
-            change=false ;
+        	this.nouveauxCentres();
+            change= this.etape();
         }
         return this.lesClusters ;
     }
 
     // affiche toutes les données avec leur numéro de cluster et la distance par rapport au centre
     // donne aussi un résumé des mesures de qualité : WC et BC
-    private void affichage(){
+    private void affichage() throws ClusterException{
         System.out.println("--------------------");
         for (Donnee d : this.lesDonnees) {
             System.out.println(d.toComplexString());
