@@ -2,7 +2,6 @@ package clustering;
 
 public class DistanceEuclidienne implements Distance {
 
-	@Override
 	public double valeur(Donnee d1, Donnee d2) {
 		double sum = 0;
 

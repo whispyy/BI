@@ -18,7 +18,7 @@ public class MainIris{
         try {
             ficTexte = new BufferedReader(new FileReader(new File(fichier)));
             if (ficTexte == null) {
-                throw new FileNotFoundException("Fichier non trouvÃ©: " + fichier);
+                throw new FileNotFoundException("Fichier non trouvé: " + fichier);
             }
             do {
                 ligne = ficTexte.readLine();
