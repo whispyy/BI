@@ -26,7 +26,7 @@ Nous avons commencé par construire le tableau suivant :
 
 A partir du tableau précédent nous en avons déduit un arbre pour classer les animaux listés :
 
-Respire à l'air 
+- Respire à l'air 
   - non--> poisson
   - oui--> Plume 
     - oui--> poule
