@@ -16,3 +16,23 @@ K = 1 -> 2, K = 2 -> 2, K = 3 -> 2, K = 4 -> 2, K = 5 -> 2
 ## Exercice 2
 
 
+Couleur : 
+- Jaune (2,2) > 1
+- Vert (0,3) > 0
+- Rouge (1,0) > 0
+
+Taille :
+- Petit : 1.2
+- Moyen : 2.1
+- Grand : 0.2
+
+Poids :
+- Léger
+- Moyen
+- Lourd
+
+Yeux par pair :
+- Oui
+- Non
+
+

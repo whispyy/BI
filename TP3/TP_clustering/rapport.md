@@ -27,7 +27,7 @@ Via GnuPlot je définie les commandes suivantes :
 >set output 'result.png'
 >plot '0.dat', '1.dat', '2.dat', '3.dat'
 
-les
+
 ## Iris
 
 1/ Les points étant des données numériques, la distance euclidienne est donc appropriée dans ce cas.
