@@ -105,5 +105,16 @@ Number of Leaves : 10
 Size of the tree : 15
 ```
 
-## Q3.2
+## Q3.2 | Q3.3 | Q3.4
 
+Le résultat semble identique quelque soit la méthode de validation choisie.
+
+
+## Q3.5
+
+| Titanic | Correctly classified instances | F-measure |
+|---|---|---|
+| Algo 1 | 79.055 % | 
+| Algo 2 | 79.055 % | 
+| Algo 3 | 78.5552 % | 
+| Algo 4 | 79.055 % | 
