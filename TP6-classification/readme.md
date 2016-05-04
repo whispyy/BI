@@ -27,17 +27,17 @@ Nous avons commencé par construire le tableau suivant :
 
 A partir du tableau précédent nous en avons déduit un arbre pour classer les animaux listés :
 
-- Respire à l'air 
+- Respire à l'air ?
   - non--> poisson
-  - oui--> Plume 
+  - oui--> Plume ?
     - oui--> poule
-    - non--> Capacité de voler 
+    - non--> Capacité de voler ?
       - oui--> abeille
-      - non--> Poils 
+      - non--> Poils ?
         - non--> crabe
-        - oui--> Carnivore 
+        - oui--> Carnivore ?
           - non--> antilope
-          - oui--> Produit du lait 
+          - oui--> Produit du lait ?
             - non--> ours
             - oui--> chat
 
@@ -114,7 +114,11 @@ Le résultat semble identique quelque soit la méthode de validation choisie.
 
 | Titanic | Correctly classified instances | F-measure |
 |---|---|---|
-| Algo 1 | 79.055 % | 
-| Algo 2 | 79.055 % | 
-| Algo 3 | 78.5552 % | 
-| Algo 4 | 79.055 % | 
+| Algo 1 | 79.055 % | 0.765 |
+| Algo 2 | 79.055 % | 0.768 |
+| Algo 3 | 78.5552 % | 0.683 |
+| Algo 4 | 79.055 % | 0.768 |
+
+## Q3.7
+
+On remarque que les résultats présents via les différents algorithmes sont sensiblents identiques.
